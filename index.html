@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Credit No Deposit - Fast Loading Site Template">
+    <title>Free Credit - No Deposit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1f2937;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            height: 60px;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.5rem 1.25rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #1f2937;
+        }
+        
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 4rem 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-light {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-light:hover {
+            background: #f3f4f6;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 4rem 1rem;
+            background: #f9fafb;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #0f172a;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: #dbeafe;
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+        
+        .feature-card p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.2s;
+        }
+        
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s;
+        }
+        
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-header h2 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #1f2937;
+        }
+        
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3000;
+            background: white;
+        }
+        
+        .admin-panel.show {
+            display: flex;
+        }
+        
+        .admin-sidebar {
+            width: 250px;
+            background: #1f2937;
+            color: white;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .admin-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .admin-header {
+            background: #374151;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .admin-nav {
+            list-style: none;
+        }
+        
+        .admin-nav li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-nav button {
+            background: none;
+            border: none;
+            color: #d1d5db;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        
+        .admin-nav button:hover {
+            background: #374151;
+            color: white;
+        }
+        
+        .admin-nav button.active {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .editor-container {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            overflow: hidden;
+        }
+        
+        .editor-toolbar {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: #f3f4f6;
+            border-bottom: 1px solid #e5e7eb;
+            flex-wrap: wrap;
+        }
+        
+        .editor-toolbar button {
+            padding: 0.5rem 0.75rem;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .editor-toolbar button:hover {
+            background: #e5e7eb;
+        }
+        
+        #htmlEditor {
+            width: 100%;
+            min-height: 400px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border: none;
+            resize: vertical;
+        }
+        
+        .preview-container {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            margin-top: 2rem;
+            padding: 1rem;
+        }
+        
+        .preview-container h3 {
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+        
+        #preview {
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            min-height: 300px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .admin-sidebar {
+                width: 100%;
+                max-height: 40%;
+                border-right: none;
+                border-bottom: 1px solid #374151;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">💳 Free Credit</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="btn btn-secondary" id="loginBtn">Login</button>
+                <button class="btn btn-primary" id="signupBtn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Free Credit, No Deposit Required</h1>
+            <p>Get instant access to exclusive credit rewards. Lightning-fast, secure, and transparent.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-light" id="heroSignupBtn">Get Started Free</button>
+                <button class="btn" style="background: transparent; border: 2px solid white; color: white;">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Sub-1 second load times with optimized performance and minimal data usage.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Safe</h3>
+                    <p>Bank-level encryption and fraud protection for your peace of mind.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>No Hidden Fees</h3>
+                    <p>Transparent pricing with zero hidden charges or surprise costs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Fully responsive design that works perfectly on all devices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Instant Approval</h3>
+                    <p>Get approved in minutes with our streamlined application process.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-Time Dashboard</h3>
+                    <p>Monitor your credit and rewards with an intuitive dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Free Credit. All rights reserved. | <a href="#" style="color: #3b82f6;">Privacy Policy</a> | <a href="#" style="color: #3b82f6;">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content" style="position: relative;">
+            <button class="close-btn" onclick="closeLoginModal()">×</button>
+            <div class="modal-header">
+                <h2>Admin Login</h2>
+                <p style="color: #6b7280; font-size: 0.9rem;">Enter your credentials to access the admin panel</p>
+            </div>
+            <form id="loginForm" onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="admin@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem; color: #6b7280; font-size: 0.9rem;">
+                Demo: admin@example.com / password
+            </p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content" style="position: relative;">
+            <button class="close-btn" onclick="closeSignupModal()">×</button>
+            <div class="modal-header">
+                <h2>Sign Up Now</h2>
+                <p style="color: #6b7280; font-size: 0.9rem;">Create your account in seconds</p>
+            </div>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-sidebar">
+            <h2 style="margin-bottom: 2rem; color: white;">Admin Panel</h2>
+            <ul class="admin-nav">
+                <li><button class="admin-tab-btn active" data-tab="dashboard">📊 Dashboard</button></li>
+                <li><button class="admin-tab-btn" data-tab="editor">✏️ HTML Editor</button></li>
+                <li><button class="admin-tab-btn" data-tab="content">📝 Manage Content</button></li>
+                <li><button class="admin-tab-btn" data-tab="settings">⚙️ Settings</button></li>
+                <li style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #374151;">
+                    <button id="logoutBtn" style="color: #ef4444;">🚪 Logout</button>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-main">
+            <div class="admin-header">
+                <h1 style="color: white;">Admin Dashboard</h1>
+                <span id="adminUser" style="color: #d1d5db;"></span>
+            </div>
+            <div class="admin-content">
+                <!-- Dashboard Tab -->
+                <div class="admin-tab-content" data-tab="dashboard">
+                    <h2>Dashboard</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
+                        <div style="background: #f3f4f6; padding: 1.5rem; border-radius: 0.375rem;">
+                            <div style="font-size: 0.9rem; color: #6b7280;">Total Users</div>
+                            <div style="font-size: 2rem; font-weight: 700; color: #0f172a; margin-top: 0.5rem;">1,234</div>
+                        </div>
+                        <div style="background: #f3f4f6; padding: 1.5rem; border-radius: 0.375rem;">
+                            <div style="font-size: 0.9rem; color: #6b7280;">Active Sessions</div>
+                            <div style="font-size: 2rem; font-weight: 700; color: #0f172a; margin-top: 0.5rem;">567</div>
+                        </div>
+                        <div style="background: #f3f4f6; padding: 1.5rem; border-radius: 0.375rem;">
+                            <div style="font-size: 0.9rem; color: #6b7280;">Revenue</div>
+                            <div style="font-size: 2rem; font-weight: 700; color: #0f172a; margin-top: 0.5rem;">$12.5K</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Editor Tab -->
+                <div class="admin-tab-content" data-tab="editor" style="display: none;">
+                    <h2>WYSIWYG HTML Editor</h2>
+                    <p style="color: #6b7280; margin-bottom: 1rem;">Edit your site's HTML content directly with a live preview.</p>
+                    <div class="editor-container">
+                        <div class="editor-toolbar">
+                            <button type="button" onclick="formatText('bold')">Bold</button>
+                            <button type="button" onclick="formatText('italic')">Italic</button>
+                            <button type="button" onclick="formatText('underline')">Underline</button>
+                            <button type="button" onclick="formatText('h1')">H1</button>
+                            <button type="button" onclick="formatText('h2')">H2</button>
+                            <button type="button" onclick="formatText('p')">Paragraph</button>
+                            <button type="button" onclick="insertLink()">Link</button>
+                            <button type="button" onclick="clearFormatting()">Clear</button>
+                        </div>
+                        <textarea id="htmlEditor" placeholder="Enter your HTML content here..."></textarea>
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="updatePreview()">Update Preview</button>
+                    
+                    <div class="preview-container">
+                        <h3>Live Preview</h3>
+                        <iframe id="preview" sandbox="allow-same-origin"></iframe>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="saveContent()">Save Changes</button>
+                </div>
+
+                <!-- Content Tab -->
+                <div class="admin-tab-content" data-tab="content" style="display: none;">
+                    <h2>Manage Content</h2>
+                    <div style="margin-top: 2rem;">
+                        <div style="background: #f3f4f6; padding: 1rem; border-radius: 0.375rem; margin-bottom: 1rem;">
+                            <h3 style="margin-bottom: 0.5rem;">Home Page Content</h3>
+                            <p style="color: #6b7280; font-size: 0.9rem;">Last updated: 2 hours ago</p>
+                            <button class="btn btn-secondary" style="margin-top: 0.5rem;">Edit</button>
+                        </div>
+                        <div style="background: #f3f4f6; padding: 1rem; border-radius: 0.375rem; margin-bottom: 1rem;">
+                            <h3 style="margin-bottom: 0.5rem;">Features Section</h3>
+                            <p style="color: #6b7280; font-size: 0.9rem;">Last updated: 1 day ago</p>
+                            <button class="btn btn-secondary" style="margin-top: 0.5rem;">Edit</button>
+                        </div>
+                        <div style="background: #f3f4f6; padding: 1rem; border-radius: 0.375rem;">
+                            <h3 style="margin-bottom: 0.5rem;">Footer Content</h3>
+                            <p style="color: #6b7280; font-size: 0.9rem;">Last updated: 3 days ago</p>
+                            <button class="btn btn-secondary" style="margin-top: 0.5rem;">Edit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div class="admin-tab-content" data-tab="settings" style="display: none;">
+                    <h2>Settings</h2>
+                    <div style="margin-top: 2rem; max-width: 600px;">
+                        <div class="form-group">
+                            <label for="siteName">Site Name</label>
+                            <input type="text" id="siteName" value="Free Credit No Deposit">
+                        </div>
+                        <div class="form-group">
+                            <label for="siteDescription">Site Description</label>
+                            <input type="text" id="siteDescription" value="Get instant access to exclusive credit rewards">
+                        </div>
+                        <div class="form-group">
+                            <label for="adminEmail">Admin Email</label>
+                            <input type="email" id="adminEmail" value="admin@example.com">
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Performance optimization
+        window.addEventListener('load', () => {
+            console.log('⚡ Page loaded in:', performance.now().toFixed(2), 'ms');
+        });
+
+        // Modal controls
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('show');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('show');
+        }
+
+        function openSignupModal() {
+            document.getElementById('signupModal').classList.add('show');
+        }
+
+        function closeSignupModal() {
+            document.getElementById('signupModal').classList.remove('show');
+        }
+
+        // Close modals on outside click
+        window.addEventListener('click', (e) => {
+            const loginModal = document.getElementById('loginModal');
+            const signupModal = document.getElementById('signupModal');
+            if (e.target === loginModal) closeLoginModal();
+            if (e.target === signupModal) closeSignupModal();
+        });
+
+        // Admin login
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Simple demo validation
+            if (email === 'admin@example.com' && password === 'password') {
+                closeLoginModal();
+                showAdminPanel(email);
+                localStorage.setItem('adminUser', email);
+                alert('✅ Login successful!');
+            } else {
+                alert('❌ Invalid credentials. Use admin@example.com / password');
+            }
+        }
+
+        // Show admin panel
+        function showAdminPanel(email) {
+            document.getElementById('adminPanel').classList.add('show');
+            document.getElementById('adminUser').textContent = `Logged in as: ${email}`;
+        }
+
+        // Admin tabs
+        document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+                
+                document.querySelectorAll('.admin-tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                document.querySelectorAll('.admin-tab-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                
+                document.querySelector(`[data-tab="${tab}"]`).style.display = 'block';
+                btn.classList.add('active');
+            });
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            document.getElementById('adminPanel').classList.remove('show');
+            localStorage.removeItem('adminUser');
+            alert('Logged out successfully!');
+        });
+
+        // HTML Editor functions
+        function formatText(format) {
+            const editor = document.getElementById('htmlEditor');
+            const start = editor.selectionStart;
+            const end = editor.selectionEnd;
+            const text = editor.value;
+            const selectedText = text.substring(start, end) || 'text';
+
+            let formatted = '';
+            switch(format) {
+                case 'bold':
+                    formatted = `<strong>${selectedText}</strong>`;
+                    break;
+                case 'italic':
+                    formatted = `<em>${selectedText}</em>`;
+                    break;
+                case 'underline':
+                    formatted = `<u>${selectedText}</u>`;
+                    break;
+                case 'h1':
+                    formatted = `<h1>${selectedText}</h1>`;
+                    break;
+                case 'h2':
+                    formatted = `<h2>${selectedText}</h2>`;
+                    break;
+                case 'p':
+                    formatted = `<p>${selectedText}</p>`;
+                    break;
+            }
+
+            editor.value = text.substring(0, start) + formatted + text.substring(end);
+        }
+
+        function insertLink() {
+            const url = prompt('Enter URL:');
+            const text = prompt('Enter link text:');
+            if (url && text) {
+                const editor = document.getElementById('htmlEditor');
+                const link = `<a href="${url}">${text}</a>`;
+                editor.value += '\n' + link;
+            }
+        }
+
+        function clearFormatting() {
+            document.getElementById('htmlEditor').value = '';
+        }
+
+        function updatePreview() {
+            const html = document.getElementById('htmlEditor').value;
+            const preview = document.getElementById('preview');
+            const fullHtml = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; }
+                        h1, h2 { color: #0f172a; }
+                        a { color: #3b82f6; text-decoration: none; }
+                        a:hover { text-decoration: underline; }
+                    </style>
+                </head>
+                <body>
+                    ${html}
+                </body>
+                </html>
+            `;
+            preview.srcdoc = fullHtml;
+        }
+
+        function saveContent() {
+            const html = document.getElementById('htmlEditor').value;
+            localStorage.setItem('editorContent', html);
+            alert('✅ Content saved successfully!');
+        }
+
+        function saveSettings() {
+            const siteName = document.getElementById('siteName').value;
+            const siteDescription = document.getElementById('siteDescription').value;
+            const adminEmail = document.getElementById('adminEmail').value;
+
+            localStorage.setItem('siteName', siteName);
+            localStorage.setItem('siteDescription', siteDescription);
+            localStorage.setItem('adminEmail', adminEmail);
+
+            alert('✅ Settings saved successfully!');
+        }
+
+        // Button event listeners
+        document.getElementById('loginBtn').addEventListener('click', openLoginModal);
+        document.getElementById('signupBtn').addEventListener('click', openSignupModal);
+        document.getElementById('heroSignupBtn').addEventListener('click', openSignupModal);
+
+        // Handle signup
+        function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            closeSignupModal();
+            alert(`✅ Welcome ${name}! Check your email at ${email} for confirmation.`);
+            document.getElementById('signupForm').reset();
+        }
+
+        // Load saved admin session
+        window.addEventListener('load', () => {
+            const adminUser = localStorage.getItem('adminUser');
+            if (adminUser) {
+                showAdminPanel(adminUser);
+            }
+        });
+    </script>
+</body>
+</html>

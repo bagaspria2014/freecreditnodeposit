@@ -792,20 +792,27 @@
             }
         }
 
-        // Admin tabs event listeners
-        document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tab = btn.dataset.tab;
-                setActiveTab(tab);
+        // Initialize tab buttons - wait for DOM to be ready
+        function initializeTabs() {
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tab = this.getAttribute('data-tab');
+                    setActiveTab(tab);
+                });
             });
-        });
+        }
 
         // Logout
-        document.getElementById('logoutBtn').addEventListener('click', () => {
-            document.getElementById('adminPanel').classList.remove('show');
-            localStorage.removeItem('adminUser');
-            alert('Logged out successfully!');
-        });
+        function initializeLogout() {
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    document.getElementById('adminPanel').classList.remove('show');
+                    localStorage.removeItem('adminUser');
+                    alert('Logged out successfully!');
+                });
+            }
+        }
 
         // HTML Editor functions
         function formatText(format) {
@@ -896,11 +903,6 @@
             alert('✅ Settings saved successfully!');
         }
 
-        // Button event listeners
-        document.getElementById('loginBtn').addEventListener('click', openLoginModal);
-        document.getElementById('signupBtn').addEventListener('click', openSignupModal);
-        document.getElementById('heroSignupBtn').addEventListener('click', openSignupModal);
-
         // Handle signup
         function handleSignup(event) {
             event.preventDefault();
@@ -911,8 +913,24 @@
             document.getElementById('signupForm').reset();
         }
 
-        // Load saved admin session
-        window.addEventListener('load', () => {
+        // Initialize all event listeners when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Button event listeners
+            const loginBtn = document.getElementById('loginBtn');
+            const signupBtn = document.getElementById('signupBtn');
+            const heroSignupBtn = document.getElementById('heroSignupBtn');
+            
+            if (loginBtn) loginBtn.addEventListener('click', openLoginModal);
+            if (signupBtn) signupBtn.addEventListener('click', openSignupModal);
+            if (heroSignupBtn) heroSignupBtn.addEventListener('click', openSignupModal);
+            
+            // Initialize tab buttons
+            initializeTabs();
+            
+            // Initialize logout button
+            initializeLogout();
+            
+            // Load saved admin session
             const adminUser = localStorage.getItem('adminUser');
             if (adminUser) {
                 showAdminPanel(adminUser);

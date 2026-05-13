@@ -423,6 +423,14 @@
             min-height: 300px;
         }
         
+        .admin-tab-content {
+            display: none;
+        }
+        
+        .admin-tab-content.active {
+            display: block;
+        }
+        
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -613,7 +621,7 @@
             </div>
             <div class="admin-content">
                 <!-- Dashboard Tab -->
-                <div class="admin-tab-content" data-tab="dashboard">
+                <div class="admin-tab-content active" data-tab="dashboard">
                     <h2>Dashboard</h2>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
                         <div style="background: #f3f4f6; padding: 1.5rem; border-radius: 0.375rem;">
@@ -632,7 +640,7 @@
                 </div>
 
                 <!-- Editor Tab -->
-                <div class="admin-tab-content" data-tab="editor" style="display: none;">
+                <div class="admin-tab-content" data-tab="editor">
                     <h2>WYSIWYG HTML Editor</h2>
                     <p style="color: #6b7280; margin-bottom: 1rem;">Edit your site's HTML content directly with a live preview.</p>
                     <div class="editor-container">
@@ -659,7 +667,7 @@
                 </div>
 
                 <!-- Content Tab -->
-                <div class="admin-tab-content" data-tab="content" style="display: none;">
+                <div class="admin-tab-content" data-tab="content">
                     <h2>Manage Content</h2>
                     <div style="margin-top: 2rem;">
                         <div style="background: #f3f4f6; padding: 1rem; border-radius: 0.375rem; margin-bottom: 1rem;">
@@ -681,7 +689,7 @@
                 </div>
 
                 <!-- Settings Tab -->
-                <div class="admin-tab-content" data-tab="settings" style="display: none;">
+                <div class="admin-tab-content" data-tab="settings">
                     <h2>Settings</h2>
                     <div style="margin-top: 2rem; max-width: 600px;">
                         <div class="form-group">
@@ -755,23 +763,40 @@
         function showAdminPanel(email) {
             document.getElementById('adminPanel').classList.add('show');
             document.getElementById('adminUser').textContent = `Logged in as: ${email}`;
+            // Set dashboard as active tab
+            setActiveTab('dashboard');
         }
 
-        // Admin tabs
+        // Set active tab
+        function setActiveTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.admin-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            const activeContent = document.querySelector(`.admin-tab-content[data-tab="${tabName}"]`);
+            if (activeContent) {
+                activeContent.classList.add('active');
+            }
+            
+            // Set active button
+            const activeBtn = document.querySelector(`.admin-tab-btn[data-tab="${tabName}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        }
+
+        // Admin tabs event listeners
         document.querySelectorAll('.admin-tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const tab = btn.dataset.tab;
-                
-                document.querySelectorAll('.admin-tab-content').forEach(content => {
-                    content.style.display = 'none';
-                });
-                
-                document.querySelectorAll('.admin-tab-btn').forEach(b => {
-                    b.classList.remove('active');
-                });
-                
-                document.querySelector(`[data-tab="${tab}"]`).style.display = 'block';
-                btn.classList.add('active');
+                setActiveTab(tab);
             });
         });
 
